@@ -11,7 +11,7 @@ import java.util.Random;
 @Service
 public class ExaminerServiceImpl implements ExaminerService {
     private Random random;
-    //почему нужно писть ?
+    //почему нужно писть ?/////
 
     private final QuestionService questionService;
 
