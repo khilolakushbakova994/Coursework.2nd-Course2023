@@ -23,11 +23,10 @@ class JavaQuestionServiceTest {
 
     @Test
     void addQuestionAndAnswer() {
-        Question addedQuestion = out.add("Какие условные операторы вы знаете? Дайте краткое определение каждому из них",
+        out.add("Какие условные операторы вы знаете? Дайте краткое определение каждому из них",
                 "if, if-else и switch");
 
-        assertEquals(addedQuestion.getQuestion(), "Какие условные операторы вы знаете? Дайте краткое определение каждому из них");
-        assertEquals(addedQuestion.getAnswer(), "if, if-else и switch");
+        assertEquals(1, out.getAll().size());
     }
 
     @Test

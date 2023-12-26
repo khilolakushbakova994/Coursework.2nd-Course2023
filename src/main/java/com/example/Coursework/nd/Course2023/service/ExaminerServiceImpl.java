@@ -22,11 +22,11 @@ public class ExaminerServiceImpl implements ExaminerService {
     @Override
     public Collection<Question> getQuestions(int amount) {
         int existQuestionAmount = questionService.getAll().size();
-        if (existQuestionAmount>=amount){
+        if (existQuestionAmount > amount) {
             throw new NoMoreQuestionsException("Максимальное количество вопросов!");
         }
         Set<Question> result = new HashSet<>();
-        while (result.size()<=amount){
+        while (result.size() < amount) {
             result.add(questionService.getRandomQuestion());
         }
 
