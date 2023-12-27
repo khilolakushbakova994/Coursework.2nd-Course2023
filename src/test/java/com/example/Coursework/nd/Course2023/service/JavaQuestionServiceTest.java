@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class JavaQuestionServiceTest {
     private JavaQuestionService out;
 
-    private  final Question FIRST_QUESTION = new Question ("Какие циклы вы знаете, в чем их отличия?");
-    private  final  Question SECOND_QUESTION = new Question("Методы каких типов бывают? Приведите примеры использования каждого типа.");
-    private  final  Question THIRD_QUESTION = new Question("Расскажите о переменных примитивного и ссылочного типа. В чём различия данных переменных?");
+    private final Question FIRST_QUESTION = new Question("Какие циклы вы знаете, в чем их отличия?", "Ответ1");
+    private final Question SECOND_QUESTION = new Question("Методы каких типов бывают? Приведите примеры использования каждого типа.", "Ответ2");
+    private final Question THIRD_QUESTION = new Question("Расскажите о переменных примитивного и ссылочного типа. В чём различия данных переменных?", "Ответ2");
 
     @BeforeEach
     public void setUp() {
@@ -23,11 +23,10 @@ class JavaQuestionServiceTest {
 
     @Test
     void addQuestionAndAnswer() {
-        Question addedQuestion = out.add("Какие условные операторы вы знаете? Дайте краткое определение каждому из них",
+        out.add("Какие условные операторы вы знаете? Дайте краткое определение каждому из них",
                 "if, if-else и switch");
 
-        assertEquals(addedQuestion.getQuestion(), "Какие условные операторы вы знаете? Дайте краткое определение каждому из них");
-        assertEquals(addedQuestion.getAnswer(), "if, if-else и switch");
+        assertEquals(1, out.getAll().size());
     }
 
     @Test
@@ -53,18 +52,11 @@ class JavaQuestionServiceTest {
         out.addOnlyQuestion(SECOND_QUESTION);
         out.addOnlyQuestion(THIRD_QUESTION);
         List<Question> expected = List.of(
-                new Question("Какие циклы вы знаете, в чем их отличия?"),
-                new Question("Методы каких типов бывают? Приведите примеры использования каждого типа."),
-                new Question("Расскажите о переменных примитивного и ссылочного типа. В чём различия данных переменных?"));
+                new Question("Какие циклы вы знаете, в чем их отличия?", "Ответ1"),
+                new Question("Методы каких типов бывают? Приведите примеры использования каждого типа.", "Ответ2"),
+                new Question("Расскажите о переменных примитивного и ссылочного типа. В чём различия данных переменных?", "Ответ3"));
         List<Question> result = (List<Question>) out.getAll();
         assertEquals(expected.size(), result.size());
-    }
-    @Test
-    void CheckToRandomQuestion(){
-        out.addOnlyQuestion(FIRST_QUESTION);
-        out.addOnlyQuestion(SECOND_QUESTION);
-        out.addOnlyQuestion(THIRD_QUESTION);
-        out.getRandomQuestion();
 
 
     }

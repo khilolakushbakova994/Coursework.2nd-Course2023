@@ -1,18 +1,20 @@
 package com.example.Coursework.nd.Course2023.service;
 
 import com.example.Coursework.nd.Course2023.model.Question;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 
 public class JavaQuestionService implements QuestionService {
     Set<Question> questions = new HashSet<>();
 
     @Override
     public Question add(String question, String answer) {
-        Question questionAndAnswer = new Question(question, answer);
+        Question questionAndAnswer = new Question();
         questions.add(questionAndAnswer);
 
         return questionAndAnswer ;

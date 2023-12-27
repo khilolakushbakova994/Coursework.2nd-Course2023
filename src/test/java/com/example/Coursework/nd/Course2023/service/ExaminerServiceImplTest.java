@@ -8,22 +8,30 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ExaminerServiceImplTest {
-    private  final Question FIRST_QUESTION = new Question ("Какие циклы вы знаете, в чем их отличия?");
     @Mock
     QuestionService questionServiceMock;
 
     @InjectMocks
     private ExaminerServiceImpl out;
 
+    private static final Question FIRST_QUESTION = new Question("Какие циклы вы знаете, в чем их отличия?", "Ответ1");
+    private static final Question SECOND_QUESTION = new Question("Методы каких типов бывают? Приведите примеры использования каждого типа.", "Ответ2");
+    private static final Question THIRD_QUESTION = new Question("Расскажите о переменных примитивного и ссылочного типа. В чём различия данных переменных?", "Ответ3");
+
+
     @Test
-    void getQuestions() {
-        Collection<Question> expected = out.getQuestions(1);
-        List<Question> result = (List<Question>) FIRST_QUESTION;
-        assertEquals(expected.size(),result.size());
+    public void getQuestions() {
+        when(questionServiceMock.getAll())
+                .thenReturn(Collections.singletonList(FIRST_QUESTION));
+        when(questionServiceMock.getRandomQuestion())
+                .thenReturn(FIRST_QUESTION);
+        assertEquals(out.getQuestions(1).size(), 1);
     }
 }
